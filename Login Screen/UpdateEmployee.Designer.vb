@@ -34,10 +34,12 @@ Partial Class UpdateEmployee
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pbViewBookings = New System.Windows.Forms.PictureBox()
+        Me.btnUpdateEmployee = New System.Windows.Forms.Button()
         Me.GBSearch = New System.Windows.Forms.GroupBox()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtEmpIDSearch = New System.Windows.Forms.TextBox()
+        Me.btnDeleteEmployee = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.confirmPassTxt = New System.Windows.Forms.TextBox()
@@ -48,9 +50,9 @@ Partial Class UpdateEmployee
         Me.MBPhoneNo = New System.Windows.Forms.MaskedTextBox()
         Me.CBGender = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
+        Me.lblConfirmPassWd = New System.Windows.Forms.Label()
         Me.txtPassWd = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblPasswd = New System.Windows.Forms.Label()
         Me.txtAddress = New System.Windows.Forms.TextBox()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.txtLName = New System.Windows.Forms.TextBox()
@@ -64,6 +66,7 @@ Partial Class UpdateEmployee
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.btnAddEmployee = New System.Windows.Forms.Button()
         Me.CBAction = New System.Windows.Forms.ComboBox()
         Me.EmployeeTableAdapter = New Login_Screen.group26DataSetTableAdapters.EmployeeTableAdapter()
         Me.FKBookingEmployeeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -71,9 +74,6 @@ Partial Class UpdateEmployee
         Me.EmployeeBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableAdapterManager = New Login_Screen.group26DataSetTableAdapters.TableAdapterManager()
         Me.EmployeeBindingSource2 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.btnUpdateEmployee = New System.Windows.Forms.Button()
-        Me.btnDeleteEmployee = New System.Windows.Forms.Button()
-        Me.btnAddEmployee = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -209,11 +209,20 @@ Partial Class UpdateEmployee
         Me.pbViewBookings.TabIndex = 14
         Me.pbViewBookings.TabStop = False
         '
+        'btnUpdateEmployee
+        '
+        Me.btnUpdateEmployee.Location = New System.Drawing.Point(357, 517)
+        Me.btnUpdateEmployee.Name = "btnUpdateEmployee"
+        Me.btnUpdateEmployee.Size = New System.Drawing.Size(120, 38)
+        Me.btnUpdateEmployee.TabIndex = 26
+        Me.btnUpdateEmployee.Text = "Update Employee"
+        Me.btnUpdateEmployee.UseVisualStyleBackColor = True
+        '
         'GBSearch
         '
         Me.GBSearch.Controls.Add(Me.btnSearch)
         Me.GBSearch.Controls.Add(Me.Label5)
-        Me.GBSearch.Controls.Add(Me.TextBox1)
+        Me.GBSearch.Controls.Add(Me.txtEmpIDSearch)
         Me.GBSearch.Location = New System.Drawing.Point(451, 12)
         Me.GBSearch.Name = "GBSearch"
         Me.GBSearch.Size = New System.Drawing.Size(366, 45)
@@ -239,12 +248,21 @@ Partial Class UpdateEmployee
         Me.Label5.TabIndex = 0
         Me.Label5.Text = "Employee ID"
         '
-        'TextBox1
+        'txtEmpIDSearch
         '
-        Me.TextBox1.Location = New System.Drawing.Point(90, 15)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(160, 20)
-        Me.TextBox1.TabIndex = 2
+        Me.txtEmpIDSearch.Location = New System.Drawing.Point(90, 15)
+        Me.txtEmpIDSearch.Name = "txtEmpIDSearch"
+        Me.txtEmpIDSearch.Size = New System.Drawing.Size(160, 20)
+        Me.txtEmpIDSearch.TabIndex = 2
+        '
+        'btnDeleteEmployee
+        '
+        Me.btnDeleteEmployee.Location = New System.Drawing.Point(537, 517)
+        Me.btnDeleteEmployee.Name = "btnDeleteEmployee"
+        Me.btnDeleteEmployee.Size = New System.Drawing.Size(120, 38)
+        Me.btnDeleteEmployee.TabIndex = 27
+        Me.btnDeleteEmployee.Text = "Delete Employee"
+        Me.btnDeleteEmployee.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -255,9 +273,9 @@ Partial Class UpdateEmployee
         Me.GroupBox1.Controls.Add(Me.MBPhoneNo)
         Me.GroupBox1.Controls.Add(Me.CBGender)
         Me.GroupBox1.Controls.Add(Me.Label15)
-        Me.GroupBox1.Controls.Add(Me.Label14)
+        Me.GroupBox1.Controls.Add(Me.lblConfirmPassWd)
         Me.GroupBox1.Controls.Add(Me.txtPassWd)
-        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.lblPasswd)
         Me.GroupBox1.Controls.Add(Me.txtAddress)
         Me.GroupBox1.Controls.Add(Me.txtEmail)
         Me.GroupBox1.Controls.Add(Me.txtLName)
@@ -289,6 +307,7 @@ Partial Class UpdateEmployee
         '
         Me.confirmPassTxt.Location = New System.Drawing.Point(245, 303)
         Me.confirmPassTxt.Name = "confirmPassTxt"
+        Me.confirmPassTxt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.confirmPassTxt.Size = New System.Drawing.Size(160, 20)
         Me.confirmPassTxt.TabIndex = 12
         '
@@ -348,14 +367,14 @@ Partial Class UpdateEmployee
         Me.Label15.TabIndex = 20
         Me.Label15.Text = "Gender"
         '
-        'Label14
+        'lblConfirmPassWd
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(31, 303)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(91, 13)
-        Me.Label14.TabIndex = 18
-        Me.Label14.Text = "Confirm Password"
+        Me.lblConfirmPassWd.AutoSize = True
+        Me.lblConfirmPassWd.Location = New System.Drawing.Point(31, 303)
+        Me.lblConfirmPassWd.Name = "lblConfirmPassWd"
+        Me.lblConfirmPassWd.Size = New System.Drawing.Size(91, 13)
+        Me.lblConfirmPassWd.TabIndex = 18
+        Me.lblConfirmPassWd.Text = "Confirm Password"
         '
         'txtPassWd
         '
@@ -366,14 +385,14 @@ Partial Class UpdateEmployee
         Me.txtPassWd.Size = New System.Drawing.Size(160, 20)
         Me.txtPassWd.TabIndex = 11
         '
-        'Label4
+        'lblPasswd
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(31, 276)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(53, 13)
-        Me.Label4.TabIndex = 16
-        Me.Label4.Text = "Password"
+        Me.lblPasswd.AutoSize = True
+        Me.lblPasswd.Location = New System.Drawing.Point(31, 276)
+        Me.lblPasswd.Name = "lblPasswd"
+        Me.lblPasswd.Size = New System.Drawing.Size(53, 13)
+        Me.lblPasswd.TabIndex = 16
+        Me.lblPasswd.Text = "Password"
         '
         'txtAddress
         '
@@ -440,6 +459,7 @@ Partial Class UpdateEmployee
         Me.txtEmpID.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmployeeBindingSource, "Employee_ID", True))
         Me.txtEmpID.Location = New System.Drawing.Point(245, 25)
         Me.txtEmpID.Name = "txtEmpID"
+        Me.txtEmpID.ReadOnly = True
         Me.txtEmpID.Size = New System.Drawing.Size(160, 13)
         Me.txtEmpID.TabIndex = 3
         '
@@ -488,6 +508,15 @@ Partial Class UpdateEmployee
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "Name"
         '
+        'btnAddEmployee
+        '
+        Me.btnAddEmployee.Location = New System.Drawing.Point(186, 517)
+        Me.btnAddEmployee.Name = "btnAddEmployee"
+        Me.btnAddEmployee.Size = New System.Drawing.Size(120, 38)
+        Me.btnAddEmployee.TabIndex = 25
+        Me.btnAddEmployee.Text = "Add Employee"
+        Me.btnAddEmployee.UseVisualStyleBackColor = True
+        '
         'CBAction
         '
         Me.CBAction.AutoCompleteCustomSource.AddRange(New String() {"Add New Employee", "Update Employee"})
@@ -532,33 +561,6 @@ Partial Class UpdateEmployee
         '
         Me.EmployeeBindingSource2.DataMember = "Employee"
         Me.EmployeeBindingSource2.DataSource = Me.Group26DataSet
-        '
-        'btnUpdateEmployee
-        '
-        Me.btnUpdateEmployee.Location = New System.Drawing.Point(357, 517)
-        Me.btnUpdateEmployee.Name = "btnUpdateEmployee"
-        Me.btnUpdateEmployee.Size = New System.Drawing.Size(120, 38)
-        Me.btnUpdateEmployee.TabIndex = 26
-        Me.btnUpdateEmployee.Text = "Update Employee"
-        Me.btnUpdateEmployee.UseVisualStyleBackColor = True
-        '
-        'btnDeleteEmployee
-        '
-        Me.btnDeleteEmployee.Location = New System.Drawing.Point(537, 517)
-        Me.btnDeleteEmployee.Name = "btnDeleteEmployee"
-        Me.btnDeleteEmployee.Size = New System.Drawing.Size(120, 38)
-        Me.btnDeleteEmployee.TabIndex = 27
-        Me.btnDeleteEmployee.Text = "Delete Employee"
-        Me.btnDeleteEmployee.UseVisualStyleBackColor = True
-        '
-        'btnAddEmployee
-        '
-        Me.btnAddEmployee.Location = New System.Drawing.Point(186, 517)
-        Me.btnAddEmployee.Name = "btnAddEmployee"
-        Me.btnAddEmployee.Size = New System.Drawing.Size(120, 38)
-        Me.btnAddEmployee.TabIndex = 25
-        Me.btnAddEmployee.Text = "Add Employee"
-        Me.btnAddEmployee.UseVisualStyleBackColor = True
         '
         'UpdateEmployee
         '
@@ -605,7 +607,7 @@ Partial Class UpdateEmployee
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents CBAction As System.Windows.Forms.ComboBox
     Friend WithEvents txtEmpID As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtEmpIDSearch As System.Windows.Forms.TextBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
@@ -616,9 +618,9 @@ Partial Class UpdateEmployee
     Friend WithEvents txtLName As System.Windows.Forms.TextBox
     Friend WithEvents txtFName As System.Windows.Forms.TextBox
     Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents lblConfirmPassWd As System.Windows.Forms.Label
     Friend WithEvents txtPassWd As System.Windows.Forms.TextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents lblPasswd As System.Windows.Forms.Label
     Friend WithEvents MBPhoneNo As System.Windows.Forms.MaskedTextBox
     Friend WithEvents CBGender As System.Windows.Forms.ComboBox
     Friend WithEvents Label15 As System.Windows.Forms.Label

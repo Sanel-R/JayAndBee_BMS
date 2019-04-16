@@ -1,14 +1,15 @@
 ﻿Public Class UpdateEmployee
 
 
-    Private Sub btnAddEmployee_Click(sender As Object, e As EventArgs) 
+
+    Private Sub btnAddEmployee_Click(sender As Object, e As EventArgs) Handles btnAddEmployee.Click
         Dim answer As Integer = MsgBox("Are you sure you want to add this employee", MsgBoxStyle.YesNo, " Save confirmation")
 
         If (answer = MsgBoxResult.Yes) Then
 
             Try
 
-                If (Validate()) Then
+                If (validate1()) Then
                     'Adding employee details
                     EmployeeTableAdapter.InsertEmployee(txtFName.Text, txtLName.Text, CBGender.Text, MBPhoneNo.Text, txtAddress.Text, txtEmail.Text, txtUserName.Text, txtPassWd.Text, txtOccupType.Text)
 
@@ -40,14 +41,18 @@
     End Sub
 
     Private Sub Clear()
-
+        txtEmpID.Clear()
+        txtEmpIDSearch.Clear()
         txtFName.Clear()
         txtLName.Clear()
+        MBPhoneNo.Clear()
+        txtEmail.Clear()
         txtOccupType.Clear()
         txtPassWd.Clear()
+        confirmPassTxt.Clear()
         txtUserName.Clear()
         txtAddress.Clear()
-        CBGender.Refresh()
+        CBGender.Text = "Select"
 
     End Sub
 
@@ -66,31 +71,59 @@
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
-        Me.EmployeeTableAdapter.FillBy(Me.Group26DataSet.Employee, CInt(TextBox1.Text))
+        Me.EmployeeTableAdapter.FillBy(Me.Group26DataSet.Employee, CInt(txtEmpIDSearch.Text))
 
 
     End Sub
 
-    Private Sub btnUpdateEmployee_Click(sender As Object, e As EventArgs) 
+    Private Sub btnUpdateEmployee_Click(sender As Object, e As EventArgs)
 
-        Me.validate()
+        Me.Validate()
         Me.EmployeeBindingSource.EndEdit()
-        Me.EmployeeTableAdapter.Fill(Me.Group26DataSet.Employee)
+        Me.EmployeeTableAdapter.FillBy(Me.Group26DataSet.Employee, txtEmpIDSearch.Text)
+
+
+
+
     End Sub
 
     Private Sub CBAction_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBAction.SelectedIndexChanged
         If (CBAction.Text.Equals("Add New Employee")) Then
+            Clear()
             Dim pk As Integer = EmployeeTableAdapter.getPK()
             txtEmpID.Text = pk
             GBSearch.Visible = False
             btnAddEmployee.Enabled = True
             btnUpdateEmployee.Enabled = False
+            lblConfirmPassWd.Text = "Confirm Password"
+            lblPasswd.Text = "Password"
+
+
         Else
+            Clear()
             GBSearch.Visible = True
             txtEmpID.Text = ""
             btnUpdateEmployee.Enabled = True
             btnAddEmployee.Enabled = False
+            lblConfirmPassWd.Text = "Confirm New Password"
+            lblPasswd.Text = "New Password"
+
         End If
+
+    End Sub
+
+    Private Sub btnUpdateEmployee_Click_1(sender As Object, e As EventArgs) Handles btnUpdateEmployee.Click
+
+        Dim response As Integer = MsgBox("Are you sure you wish to update employee details?", MsgBoxStyle.YesNo)
+
+        If response.Equals(MsgBoxResult.Yes) Then
+            EmployeeTableAdapter.UpdateEmployee(txtFName.Text, txtLName.Text, CBGender.Text, MBPhoneNo.Text, txtAddress.Text, txtEmail.Text,
+            txtUserName.Text, txtPassWd.Text, txtOccupType.Text, txtEmpID.Text, txtEmpIDSearch.Text)
+            MsgBox("Updated Successfully", MsgBoxStyle.MsgBoxRight)
+            Clear()
+
+        End If
+
 
     End Sub
 End Class
