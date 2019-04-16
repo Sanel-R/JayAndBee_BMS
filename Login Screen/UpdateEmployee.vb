@@ -1,7 +1,7 @@
 ﻿Public Class UpdateEmployee
 
 
-    Private Sub btnAddEmployee_Click(sender As Object, e As EventArgs) Handles btnAddEmployee.Click
+    Private Sub btnAddEmployee_Click(sender As Object, e As EventArgs) 
         Dim answer As Integer = MsgBox("Are you sure you want to add this employee", MsgBoxStyle.YesNo, " Save confirmation")
 
         If (answer = MsgBoxResult.Yes) Then
@@ -27,6 +27,9 @@
     End Sub
 
     Private Sub UpdateEmployee_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        btnAddEmployee.Enabled = False
+        btnDeleteEmployee.Enabled = False
+        btnUpdateEmployee.Enabled = False
         'TODO: This line of code loads data into the 'Group26DataSet.Booking' table. You can move, or remove it, as needed.
         Me.BookingTableAdapter.Fill(Me.Group26DataSet.Booking)
         'TODO: This line of code loads data into the 'Group26DataSet.Employee' table. You can move, or remove it, as needed.
@@ -61,14 +64,14 @@
         Return True
     End Function
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
         Me.EmployeeTableAdapter.FillBy(Me.Group26DataSet.Employee, CInt(TextBox1.Text))
 
 
     End Sub
 
-    Private Sub btnUpdateEmployee_Click(sender As Object, e As EventArgs) Handles btnUpdateEmployee.Click
+    Private Sub btnUpdateEmployee_Click(sender As Object, e As EventArgs) 
 
         Me.validate()
         Me.EmployeeBindingSource.EndEdit()
@@ -79,8 +82,14 @@
         If (CBAction.Text.Equals("Add New Employee")) Then
             Dim pk As Integer = EmployeeTableAdapter.getPK()
             txtEmpID.Text = pk
+            GBSearch.Visible = False
+            btnAddEmployee.Enabled = True
+            btnUpdateEmployee.Enabled = False
         Else
+            GBSearch.Visible = True
             txtEmpID.Text = ""
+            btnUpdateEmployee.Enabled = True
+            btnAddEmployee.Enabled = False
         End If
 
     End Sub

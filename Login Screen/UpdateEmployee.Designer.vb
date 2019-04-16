@@ -34,11 +34,16 @@ Partial Class UpdateEmployee
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pbViewBookings = New System.Windows.Forms.PictureBox()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.GBSearch = New System.Windows.Forms.GroupBox()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.confirmPassTxt = New System.Windows.Forms.TextBox()
         Me.txtUserName = New System.Windows.Forms.TextBox()
+        Me.EmployeeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Group26DataSet = New Login_Screen.group26DataSet()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.MBPhoneNo = New System.Windows.Forms.MaskedTextBox()
         Me.CBGender = New System.Windows.Forms.ComboBox()
@@ -46,13 +51,11 @@ Partial Class UpdateEmployee
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtPassWd = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.btnUpdateEmployee = New System.Windows.Forms.Button()
-        Me.btnDeleteEmployee = New System.Windows.Forms.Button()
-        Me.btnAddEmployee = New System.Windows.Forms.Button()
         Me.txtAddress = New System.Windows.Forms.TextBox()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.txtLName = New System.Windows.Forms.TextBox()
         Me.txtFName = New System.Windows.Forms.TextBox()
+        Me.txtOccupType = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtEmpID = New System.Windows.Forms.TextBox()
@@ -62,17 +65,15 @@ Partial Class UpdateEmployee
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.CBAction = New System.Windows.Forms.ComboBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtOccupType = New System.Windows.Forms.TextBox()
-        Me.EmployeeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Group26DataSet = New Login_Screen.group26DataSet()
         Me.EmployeeTableAdapter = New Login_Screen.group26DataSetTableAdapters.EmployeeTableAdapter()
         Me.FKBookingEmployeeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.BookingTableAdapter = New Login_Screen.group26DataSetTableAdapters.BookingTableAdapter()
         Me.EmployeeBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableAdapterManager = New Login_Screen.group26DataSetTableAdapters.TableAdapterManager()
         Me.EmployeeBindingSource2 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnUpdateEmployee = New System.Windows.Forms.Button()
+        Me.btnDeleteEmployee = New System.Windows.Forms.Button()
+        Me.btnAddEmployee = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -82,6 +83,7 @@ Partial Class UpdateEmployee
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mnLogout.SuspendLayout()
         CType(Me.pbViewBookings, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GBSearch.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.EmployeeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Group26DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,11 +112,12 @@ Partial Class UpdateEmployee
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.AutoScroll = True
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Button4)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.btnUpdateEmployee)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.GBSearch)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.btnDeleteEmployee)
         Me.SplitContainer1.Panel2.Controls.Add(Me.GroupBox1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.btnAddEmployee)
         Me.SplitContainer1.Panel2.Controls.Add(Me.CBAction)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.TextBox1)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label5)
         Me.SplitContainer1.Size = New System.Drawing.Size(1046, 567)
         Me.SplitContainer1.SplitterDistance = 196
         Me.SplitContainer1.TabIndex = 2
@@ -206,14 +209,42 @@ Partial Class UpdateEmployee
         Me.pbViewBookings.TabIndex = 14
         Me.pbViewBookings.TabStop = False
         '
-        'Button4
+        'GBSearch
         '
-        Me.Button4.Location = New System.Drawing.Point(447, 27)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 6
-        Me.Button4.Text = "Search"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.GBSearch.Controls.Add(Me.btnSearch)
+        Me.GBSearch.Controls.Add(Me.Label5)
+        Me.GBSearch.Controls.Add(Me.TextBox1)
+        Me.GBSearch.Location = New System.Drawing.Point(451, 12)
+        Me.GBSearch.Name = "GBSearch"
+        Me.GBSearch.Size = New System.Drawing.Size(366, 45)
+        Me.GBSearch.TabIndex = 6
+        Me.GBSearch.TabStop = False
+        Me.GBSearch.Visible = False
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(268, 14)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.TabIndex = 6
+        Me.btnSearch.Text = "Search"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(17, 18)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(67, 13)
+        Me.Label5.TabIndex = 0
+        Me.Label5.Text = "Employee ID"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(90, 15)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(160, 20)
+        Me.TextBox1.TabIndex = 2
         '
         'GroupBox1
         '
@@ -227,9 +258,6 @@ Partial Class UpdateEmployee
         Me.GroupBox1.Controls.Add(Me.Label14)
         Me.GroupBox1.Controls.Add(Me.txtPassWd)
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.btnUpdateEmployee)
-        Me.GroupBox1.Controls.Add(Me.btnDeleteEmployee)
-        Me.GroupBox1.Controls.Add(Me.btnAddEmployee)
         Me.GroupBox1.Controls.Add(Me.txtAddress)
         Me.GroupBox1.Controls.Add(Me.txtEmail)
         Me.GroupBox1.Controls.Add(Me.txtLName)
@@ -243,9 +271,9 @@ Partial Class UpdateEmployee
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Location = New System.Drawing.Point(18, 78)
+        Me.GroupBox1.Location = New System.Drawing.Point(18, 65)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(799, 477)
+        Me.GroupBox1.Size = New System.Drawing.Size(799, 436)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         '
@@ -262,7 +290,7 @@ Partial Class UpdateEmployee
         Me.confirmPassTxt.Location = New System.Drawing.Point(245, 303)
         Me.confirmPassTxt.Name = "confirmPassTxt"
         Me.confirmPassTxt.Size = New System.Drawing.Size(160, 20)
-        Me.confirmPassTxt.TabIndex = 23
+        Me.confirmPassTxt.TabIndex = 12
         '
         'txtUserName
         '
@@ -270,7 +298,17 @@ Partial Class UpdateEmployee
         Me.txtUserName.Location = New System.Drawing.Point(245, 240)
         Me.txtUserName.Name = "txtUserName"
         Me.txtUserName.Size = New System.Drawing.Size(160, 20)
-        Me.txtUserName.TabIndex = 22
+        Me.txtUserName.TabIndex = 10
+        '
+        'EmployeeBindingSource
+        '
+        Me.EmployeeBindingSource.DataMember = "Employee"
+        Me.EmployeeBindingSource.DataSource = Me.Group26DataSet
+        '
+        'Group26DataSet
+        '
+        Me.Group26DataSet.DataSetName = "group26DataSet"
+        Me.Group26DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Label6
         '
@@ -304,7 +342,7 @@ Partial Class UpdateEmployee
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(33, 151)
+        Me.Label15.Location = New System.Drawing.Point(31, 151)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(42, 13)
         Me.Label15.TabIndex = 20
@@ -313,7 +351,7 @@ Partial Class UpdateEmployee
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(27, 303)
+        Me.Label14.Location = New System.Drawing.Point(31, 303)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(91, 13)
         Me.Label14.TabIndex = 18
@@ -322,56 +360,29 @@ Partial Class UpdateEmployee
         'txtPassWd
         '
         Me.txtPassWd.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmployeeBindingSource, "Password", True))
-        Me.txtPassWd.Location = New System.Drawing.Point(245, 266)
+        Me.txtPassWd.Location = New System.Drawing.Point(245, 273)
         Me.txtPassWd.Name = "txtPassWd"
         Me.txtPassWd.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassWd.Size = New System.Drawing.Size(160, 20)
-        Me.txtPassWd.TabIndex = 10
+        Me.txtPassWd.TabIndex = 11
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(27, 269)
+        Me.Label4.Location = New System.Drawing.Point(31, 276)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(53, 13)
         Me.Label4.TabIndex = 16
         Me.Label4.Text = "Password"
         '
-        'btnUpdateEmployee
-        '
-        Me.btnUpdateEmployee.Location = New System.Drawing.Point(203, 434)
-        Me.btnUpdateEmployee.Name = "btnUpdateEmployee"
-        Me.btnUpdateEmployee.Size = New System.Drawing.Size(120, 38)
-        Me.btnUpdateEmployee.TabIndex = 14
-        Me.btnUpdateEmployee.Text = "Update Employee"
-        Me.btnUpdateEmployee.UseVisualStyleBackColor = True
-        '
-        'btnDeleteEmployee
-        '
-        Me.btnDeleteEmployee.Location = New System.Drawing.Point(383, 434)
-        Me.btnDeleteEmployee.Name = "btnDeleteEmployee"
-        Me.btnDeleteEmployee.Size = New System.Drawing.Size(120, 38)
-        Me.btnDeleteEmployee.TabIndex = 15
-        Me.btnDeleteEmployee.Text = "Delete Employee"
-        Me.btnDeleteEmployee.UseVisualStyleBackColor = True
-        '
-        'btnAddEmployee
-        '
-        Me.btnAddEmployee.Location = New System.Drawing.Point(32, 434)
-        Me.btnAddEmployee.Name = "btnAddEmployee"
-        Me.btnAddEmployee.Size = New System.Drawing.Size(120, 38)
-        Me.btnAddEmployee.TabIndex = 13
-        Me.btnAddEmployee.Text = "Add Employee"
-        Me.btnAddEmployee.UseVisualStyleBackColor = True
-        '
         'txtAddress
         '
         Me.txtAddress.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmployeeBindingSource, "Physical_address", True))
-        Me.txtAddress.Location = New System.Drawing.Point(239, 333)
+        Me.txtAddress.Location = New System.Drawing.Point(245, 333)
         Me.txtAddress.Multiline = True
         Me.txtAddress.Name = "txtAddress"
         Me.txtAddress.Size = New System.Drawing.Size(241, 91)
-        Me.txtAddress.TabIndex = 12
+        Me.txtAddress.TabIndex = 13
         '
         'txtEmail
         '
@@ -396,6 +407,14 @@ Partial Class UpdateEmployee
         Me.txtFName.Name = "txtFName"
         Me.txtFName.Size = New System.Drawing.Size(160, 20)
         Me.txtFName.TabIndex = 5
+        '
+        'txtOccupType
+        '
+        Me.txtOccupType.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmployeeBindingSource, "Occupation_type", True))
+        Me.txtOccupType.Location = New System.Drawing.Point(245, 54)
+        Me.txtOccupType.Name = "txtOccupType"
+        Me.txtOccupType.Size = New System.Drawing.Size(160, 20)
+        Me.txtOccupType.TabIndex = 4
         '
         'Label13
         '
@@ -427,7 +446,7 @@ Partial Class UpdateEmployee
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(27, 336)
+        Me.Label11.Location = New System.Drawing.Point(31, 336)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(87, 13)
         Me.Label11.TabIndex = 4
@@ -463,7 +482,7 @@ Partial Class UpdateEmployee
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(31, 87)
+        Me.Label7.Location = New System.Drawing.Point(29, 86)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(35, 13)
         Me.Label7.TabIndex = 0
@@ -474,45 +493,11 @@ Partial Class UpdateEmployee
         Me.CBAction.AutoCompleteCustomSource.AddRange(New String() {"Add New Employee", "Update Employee"})
         Me.CBAction.FormattingEnabled = True
         Me.CBAction.Items.AddRange(New Object() {"Add New Employee", "Update Employee ", "Remove Employee"})
-        Me.CBAction.Location = New System.Drawing.Point(18, 27)
+        Me.CBAction.Location = New System.Drawing.Point(18, 26)
         Me.CBAction.Name = "CBAction"
         Me.CBAction.Size = New System.Drawing.Size(140, 21)
         Me.CBAction.TabIndex = 1
         Me.CBAction.Text = "Select Action"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(269, 28)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(160, 20)
-        Me.TextBox1.TabIndex = 2
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(196, 31)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(67, 13)
-        Me.Label5.TabIndex = 0
-        Me.Label5.Text = "Employee ID"
-        '
-        'txtOccupType
-        '
-        Me.txtOccupType.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmployeeBindingSource, "Occupation_type", True))
-        Me.txtOccupType.Location = New System.Drawing.Point(245, 54)
-        Me.txtOccupType.Name = "txtOccupType"
-        Me.txtOccupType.Size = New System.Drawing.Size(160, 20)
-        Me.txtOccupType.TabIndex = 4
-        '
-        'EmployeeBindingSource
-        '
-        Me.EmployeeBindingSource.DataMember = "Employee"
-        Me.EmployeeBindingSource.DataSource = Me.Group26DataSet
-        '
-        'Group26DataSet
-        '
-        Me.Group26DataSet.DataSetName = "group26DataSet"
-        Me.Group26DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'EmployeeTableAdapter
         '
@@ -548,6 +533,33 @@ Partial Class UpdateEmployee
         Me.EmployeeBindingSource2.DataMember = "Employee"
         Me.EmployeeBindingSource2.DataSource = Me.Group26DataSet
         '
+        'btnUpdateEmployee
+        '
+        Me.btnUpdateEmployee.Location = New System.Drawing.Point(357, 517)
+        Me.btnUpdateEmployee.Name = "btnUpdateEmployee"
+        Me.btnUpdateEmployee.Size = New System.Drawing.Size(120, 38)
+        Me.btnUpdateEmployee.TabIndex = 26
+        Me.btnUpdateEmployee.Text = "Update Employee"
+        Me.btnUpdateEmployee.UseVisualStyleBackColor = True
+        '
+        'btnDeleteEmployee
+        '
+        Me.btnDeleteEmployee.Location = New System.Drawing.Point(537, 517)
+        Me.btnDeleteEmployee.Name = "btnDeleteEmployee"
+        Me.btnDeleteEmployee.Size = New System.Drawing.Size(120, 38)
+        Me.btnDeleteEmployee.TabIndex = 27
+        Me.btnDeleteEmployee.Text = "Delete Employee"
+        Me.btnDeleteEmployee.UseVisualStyleBackColor = True
+        '
+        'btnAddEmployee
+        '
+        Me.btnAddEmployee.Location = New System.Drawing.Point(186, 517)
+        Me.btnAddEmployee.Name = "btnAddEmployee"
+        Me.btnAddEmployee.Size = New System.Drawing.Size(120, 38)
+        Me.btnAddEmployee.TabIndex = 25
+        Me.btnAddEmployee.Text = "Add Employee"
+        Me.btnAddEmployee.UseVisualStyleBackColor = True
+        '
         'UpdateEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -555,11 +567,11 @@ Partial Class UpdateEmployee
         Me.ClientSize = New System.Drawing.Size(1046, 567)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "UpdateEmployee"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Update Employee"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -568,6 +580,8 @@ Partial Class UpdateEmployee
         Me.mnLogout.ResumeLayout(False)
         Me.mnLogout.PerformLayout()
         CType(Me.pbViewBookings, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GBSearch.ResumeLayout(False)
+        Me.GBSearch.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.EmployeeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -597,9 +611,6 @@ Partial Class UpdateEmployee
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents btnUpdateEmployee As System.Windows.Forms.Button
-    Friend WithEvents btnDeleteEmployee As System.Windows.Forms.Button
-    Friend WithEvents btnAddEmployee As System.Windows.Forms.Button
     Friend WithEvents txtAddress As System.Windows.Forms.TextBox
     Friend WithEvents txtEmail As System.Windows.Forms.TextBox
     Friend WithEvents txtLName As System.Windows.Forms.TextBox
@@ -611,7 +622,7 @@ Partial Class UpdateEmployee
     Friend WithEvents MBPhoneNo As System.Windows.Forms.MaskedTextBox
     Friend WithEvents CBGender As System.Windows.Forms.ComboBox
     Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents mnLogout As MenuStrip
     Friend WithEvents LogoutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Group26DataSet As group26DataSet
@@ -627,4 +638,8 @@ Partial Class UpdateEmployee
     Friend WithEvents EmployeeBindingSource1 As BindingSource
     Friend WithEvents EmployeeBindingSource2 As BindingSource
     Friend WithEvents TableAdapterManager As group26DataSetTableAdapters.TableAdapterManager
+    Friend WithEvents GBSearch As GroupBox
+    Friend WithEvents btnUpdateEmployee As Button
+    Friend WithEvents btnDeleteEmployee As Button
+    Friend WithEvents btnAddEmployee As Button
 End Class
