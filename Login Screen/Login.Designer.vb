@@ -39,7 +39,7 @@ Partial Class Login
         '
         Me.cbOccupation.FormattingEnabled = True
         Me.cbOccupation.Items.AddRange(New Object() {"Employee", "Manager"})
-        Me.cbOccupation.Location = New System.Drawing.Point(229, 233)
+        Me.cbOccupation.Location = New System.Drawing.Point(229, 244)
         Me.cbOccupation.Name = "cbOccupation"
         Me.cbOccupation.Size = New System.Drawing.Size(173, 21)
         Me.cbOccupation.TabIndex = 0
@@ -47,14 +47,14 @@ Partial Class Login
         '
         'txtUsername
         '
-        Me.txtUsername.Location = New System.Drawing.Point(229, 275)
+        Me.txtUsername.Location = New System.Drawing.Point(229, 286)
         Me.txtUsername.Name = "txtUsername"
         Me.txtUsername.Size = New System.Drawing.Size(173, 20)
         Me.txtUsername.TabIndex = 1
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(229, 317)
+        Me.txtPassword.Location = New System.Drawing.Point(229, 328)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(173, 20)
@@ -64,7 +64,7 @@ Partial Class Login
         'lblLogin
         '
         Me.lblLogin.Font = New System.Drawing.Font("Modern No. 20", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLogin.Location = New System.Drawing.Point(151, 172)
+        Me.lblLogin.Location = New System.Drawing.Point(151, 183)
         Me.lblLogin.Name = "lblLogin"
         Me.lblLogin.Size = New System.Drawing.Size(230, 36)
         Me.lblLogin.TabIndex = 3
@@ -73,7 +73,7 @@ Partial Class Login
         '
         'lblUserType
         '
-        Me.lblUserType.Location = New System.Drawing.Point(123, 236)
+        Me.lblUserType.Location = New System.Drawing.Point(123, 247)
         Me.lblUserType.Name = "lblUserType"
         Me.lblUserType.Size = New System.Drawing.Size(100, 21)
         Me.lblUserType.TabIndex = 4
@@ -81,7 +81,7 @@ Partial Class Login
         '
         'lblUserName
         '
-        Me.lblUserName.Location = New System.Drawing.Point(123, 278)
+        Me.lblUserName.Location = New System.Drawing.Point(123, 289)
         Me.lblUserName.Name = "lblUserName"
         Me.lblUserName.Size = New System.Drawing.Size(73, 21)
         Me.lblUserName.TabIndex = 5
@@ -89,7 +89,7 @@ Partial Class Login
         '
         'lblPassword
         '
-        Me.lblPassword.Location = New System.Drawing.Point(123, 320)
+        Me.lblPassword.Location = New System.Drawing.Point(123, 331)
         Me.lblPassword.Name = "lblPassword"
         Me.lblPassword.Size = New System.Drawing.Size(63, 21)
         Me.lblPassword.TabIndex = 6
@@ -98,7 +98,7 @@ Partial Class Login
         'lnkForget_Password
         '
         Me.lnkForget_Password.AutoSize = True
-        Me.lnkForget_Password.Location = New System.Drawing.Point(123, 341)
+        Me.lnkForget_Password.Location = New System.Drawing.Point(123, 352)
         Me.lnkForget_Password.Name = "lnkForget_Password"
         Me.lnkForget_Password.Size = New System.Drawing.Size(91, 13)
         Me.lnkForget_Password.TabIndex = 7
@@ -108,7 +108,7 @@ Partial Class Login
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.Login_Screen.My.Resources.Resources.logo_jay_and_bee
-        Me.PictureBox1.Location = New System.Drawing.Point(115, 12)
+        Me.PictureBox1.Location = New System.Drawing.Point(115, 23)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(293, 138)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -117,7 +117,7 @@ Partial Class Login
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(220, 364)
+        Me.Button1.Location = New System.Drawing.Point(220, 375)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(111, 29)
         Me.Button1.TabIndex = 9
@@ -129,7 +129,7 @@ Partial Class Login
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.ClientSize = New System.Drawing.Size(556, 405)
+        Me.ClientSize = New System.Drawing.Size(535, 424)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lnkForget_Password)
