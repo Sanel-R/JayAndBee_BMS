@@ -189,6 +189,7 @@ Partial Class NewBooking
         Me.Label23.Size = New System.Drawing.Size(99, 16)
         Me.Label23.TabIndex = 9
         Me.Label23.Text = "Progress Bar"
+        Me.Label23.Visible = False
         '
         'pbNewbooking
         '
@@ -196,6 +197,7 @@ Partial Class NewBooking
         Me.pbNewbooking.Name = "pbNewbooking"
         Me.pbNewbooking.Size = New System.Drawing.Size(207, 20)
         Me.pbNewbooking.TabIndex = 8
+        Me.pbNewbooking.Visible = False
         '
         'btnBooking
         '
