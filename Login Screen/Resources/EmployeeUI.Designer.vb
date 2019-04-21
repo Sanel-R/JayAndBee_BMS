@@ -695,7 +695,7 @@ Partial Class EmployeeUI
         '
         'pbViewBookings
         '
-        Me.pbViewBookings.Image = Global.Login_Screen.My.Resources.Resources.calander
+        'Me.pbViewBookings.Image = Global.Login_Screen.My.Resources.Resources.calander
         Me.pbViewBookings.Location = New System.Drawing.Point(12, 60)
         Me.pbViewBookings.Name = "pbViewBookings"
         Me.pbViewBookings.Size = New System.Drawing.Size(178, 102)
@@ -705,7 +705,7 @@ Partial Class EmployeeUI
         '
         'pbUpdate
         '
-        Me.pbUpdate.Image = Global.Login_Screen.My.Resources.Resources.Update
+        'Me.pbUpdate.Image = Global.Login_Screen.My.Resources.Resources.Update
         Me.pbUpdate.Location = New System.Drawing.Point(12, 432)
         Me.pbUpdate.Name = "pbUpdate"
         Me.pbUpdate.Size = New System.Drawing.Size(178, 102)
@@ -715,7 +715,7 @@ Partial Class EmployeeUI
         '
         'pbCleaningService
         '
-        Me.pbCleaningService.Image = Global.Login_Screen.My.Resources.Resources.cleaning_Image
+        'Me.pbCleaningService.Image = Global.Login_Screen.My.Resources.Resources.cleaning_Image
         Me.pbCleaningService.Location = New System.Drawing.Point(12, 184)
         Me.pbCleaningService.Name = "pbCleaningService"
         Me.pbCleaningService.Size = New System.Drawing.Size(178, 102)
@@ -738,7 +738,7 @@ Partial Class EmployeeUI
         Me.pbMealService.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pbMealService.Image = Global.Login_Screen.My.Resources.Resources.additional_services
+        ' Me.pbMealService.Image = Global.Login_Screen.My.Resources.Resources.additional_services
         Me.pbMealService.Location = New System.Drawing.Point(12, 308)
         Me.pbMealService.Name = "pbMealService"
         Me.pbMealService.Size = New System.Drawing.Size(178, 102)

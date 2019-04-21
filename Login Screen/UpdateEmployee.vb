@@ -1,108 +1,37 @@
-﻿Public Class UpdateEmployee
+﻿Imports System.Text.RegularExpressions
 
-    Private Sub btnAddEmployee_Click(sender As Object, e As EventArgs) Handles btnAddEmployee.Click
-        Dim answer As Integer = MsgBox("Are you sure you want to add this employee", MsgBoxStyle.YesNo, " Save confirmation")
+Public Class UpdateEmployee
+    Private isPasswordValid As Boolean = True
 
-        If (answer = MsgBoxResult.Yes) Then
-
-            Try
-
-                If (validateInput()) Then
-                    'Adding employee details
-                    EmployeeTableAdapter.InsertEmployee(txtFName.Text, txtLName.Text, CBGender.Text, MBPhoneNo.Text, txtAddress.Text,
-                                                        txtEmail.Text, txtUserName.Text, txtPassWd.Text, txtOccupType.Text, CBStatus.Text)
-
-                    MsgBox("Successfully added")
-                    Clear() ' this method clear all the textbox 
-                Else
-
-                End If
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-
-        End If
-
-
+    Private Sub ShowAll(ByVal toggle As Boolean)
+        lblCheckMark1.Visible = toggle
+        btnAddEmployee.Visible = toggle
+        btnUpdateEmployee.Visible = toggle
+        btnDeleteEmployee.Visible = toggle
+        btnAddEmployee.Enabled = toggle
+        btnDeleteEmployee.Enabled = toggle
+        btnUpdateEmployee.Enabled = toggle
     End Sub
 
-    Private Sub UpdateEmployee_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        btnAddEmployee.Enabled = False
-        btnDeleteEmployee.Enabled = False
-        btnUpdateEmployee.Enabled = False
-        'TODO: This line of code loads data into the 'Group26DataSet.Booking' table. You can move, or remove it, as needed.
-        Me.BookingTableAdapter.Fill(Me.Group26DataSet.Booking)
-        'TODO: This line of code loads data into the 'Group26DataSet.Employee' table. You can move, or remove it, as needed.
-        '' Me.EmployeeTableAdapter.Fill(Me.Group26DataSet.Employee)
 
-
-
+    Private Sub UpdateEmployee_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
+        lblUser.Text = Login.username & " (Manager)"
+        ShowAll(False)
     End Sub
 
-    Private Function validateInput() As Boolean
+    Private Function ValidateInput() As Boolean
 
         Return True
     End Function
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-
-        Me.EmployeeTableAdapter.Fill(Me.Group26DataSet.Employee, CInt(txtEmpIDSearch.Text))
-
-    End Sub
-
     Private Sub btnUpdateEmployee_Click(sender As Object, e As EventArgs)
-
         Me.Validate()
-        Me.EmployeeBindingSource.EndEdit()
-        Me.EmployeeTableAdapter.FillBy(Me.Group26DataSet.Employee, txtEmpIDSearch.Text)
+        EmployeeTableAdapter1.UpdateEmployee(txtFName.Text, txtLName.Text, CBGender.Text, MBPhoneNo.Text, txtAddress.Text, txtEmail.Text, txtUserName.Text,
+                                txtPassWd.Text, txtOccupType.Text, CBStatus.Text, CInt(txtEmpID.Text), CInt(txtEmpIDSearch.Text))
 
     End Sub
 
-    Private Sub CBAction_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBAction.SelectedIndexChanged
-        If (CBAction.Text.Equals("Add New Employee")) Then
-            Clear()
-            EnableAll()
-            Dim pk As Integer = EmployeeTableAdapter.getPK()
-            txtEmpID.Text = pk
-            GBSearch.Visible = False
-            btnAddEmployee.Enabled = True
-            btnUpdateEmployee.Enabled = False
-            btnDeleteEmployee.Enabled = False
-            lblConfirmPassWd.Visible = True
-            confirmPassTxt.Visible = True
-            lblConfirmPassWd.Text = "Confirm Password"
-            lblPasswd.Text = "Password"
 
-
-        ElseIf CBAction.Text.Equals("Update Employee") Then
-            Clear()
-            EnableAll()
-            GBSearch.Visible = True
-            btnUpdateEmployee.Enabled = True
-            btnAddEmployee.Enabled = False
-            btnDeleteEmployee.Enabled = False
-            lblConfirmPassWd.Visible = True
-            confirmPassTxt.Visible = True
-            lblConfirmPassWd.Text = "Confirm New Password"
-            lblPasswd.Text = "New Password"
-
-
-        Else
-            Clear()
-            DisableAll()
-            GBSearch.Visible = True
-            btnDeleteEmployee.Enabled = True
-            btnUpdateEmployee.Enabled = False
-            btnAddEmployee.Enabled = False
-            lblConfirmPassWd.Text = "Confirm Password"
-            lblPasswd.Text = "Password"
-            lblConfirmPassWd.Visible = False
-            confirmPassTxt.Visible = False
-            txtPassWd.PasswordChar = ""
-
-        End If
-
-    End Sub
 
     Private Sub Clear()
         txtEmpID.Clear()
@@ -150,32 +79,186 @@
         MBPhoneNo.Enabled = False
     End Sub
 
-    Private Sub btnUpdateEmployee_Click_1(sender As Object, e As EventArgs) Handles btnUpdateEmployee.Click
+    Private Sub btnSearch_Click_1(sender As Object, e As EventArgs) Handles btnSearch.Click
 
-        Dim response As Integer = MsgBox("Are you sure you wish to update employee details?", MsgBoxStyle.YesNo)
+        Try
+            If (EmployeeTableAdapter1.FInd(CInt(txtEmpIDSearch.Text)).Equals(CInt(txtEmpIDSearch.Text))) Then
+                Me.EmployeeTableAdapter1.FillBy(Me.Group26DataSet1.Employee, CInt(txtEmpIDSearch.Text))
+                If Not CBAction.Text.Equals("Add New Employee") Then
+                    If (CBStatus.Text.Equals("Employment Terminated")) Then
+                        txtOccupType.Text = "N/A"
+                        txtUserName.Text = "N/A"
+                        CBStatus.Text = "N/A"
+                        txtPassWd.Text = ""
+                    End If
+                End If
+            End If
+        Catch null As System.NullReferenceException
+            MsgBox("No employee with ID Number " & txtEmpIDSearch.Text & " was found!", MsgBoxStyle.OkOnly)
+        Catch noImput As System.InvalidCastException
+            MsgBox("Please enter an Employee Number", MsgBoxStyle.OkOnly)
+        End Try
+        lblPasswd.Text = "Password"
+        confirmPassTxt.Visible = False
+        lblConfirmPassWd.Visible = False
+        checkmark1.Visible = False
+        checkmark2.Visible = False
+    End Sub
 
-        If response.Equals(MsgBoxResult.Yes) Then
-            EmployeeTableAdapter.UpdateEmployee(txtFName.Text, txtLName.Text, CBGender.Text, MBPhoneNo.Text, txtAddress.Text, txtEmail.Text,
-            txtUserName.Text, txtPassWd.Text, txtOccupType.Text, CBStatus.Text, CInt(txtEmpID.Text), CInt(txtEmpIDSearch.Text))
-            MsgBox("Updated Successfully", MsgBoxStyle.MsgBoxRight)
+    Private Sub CBAction_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles CBAction.SelectedIndexChanged
+        ShowAll(True)
+        If (CBAction.Text.Equals("Add New Employee")) Then
             Clear()
+            EnableAll()
+            Dim pk As Integer = EmployeeTableAdapter1.getPK()
+            txtEmpID.Text = pk
+            GBSearch.Visible = False
+            btnAddEmployee.Enabled = True
+            btnUpdateEmployee.Enabled = False
+            btnDeleteEmployee.Enabled = False
+            lblConfirmPassWd.Visible = True
+            confirmPassTxt.Visible = True
+            checkmark1.Visible = False
+            checkmark2.Visible = False
+            lblConfirmPassWd.Text = "Confirm Password"
+            lblPasswd.Text = "Password"
+
+
+        ElseIf CBAction.Text.Equals("Update Employee") Then
+            Clear()
+            EnableAll()
+            GBSearch.Visible = True
+            btnUpdateEmployee.Enabled = True
+            btnAddEmployee.Enabled = False
+            btnDeleteEmployee.Enabled = False
+            lblConfirmPassWd.Visible = False
+            confirmPassTxt.Visible = False
+            checkmark1.Visible = False
+            checkmark2.Visible = False
+
+
+
+        Else
+            Clear()
+            DisableAll()
+            GBSearch.Visible = True
+            btnDeleteEmployee.Enabled = True
+            btnUpdateEmployee.Enabled = False
+            btnAddEmployee.Enabled = False
+            lblConfirmPassWd.Text = "Confirm Password"
+            lblPasswd.Text = "Password"
+            lblConfirmPassWd.Visible = False
+            confirmPassTxt.Visible = False
+            checkmark1.Visible = False
+            checkmark2.Visible = False
+            txtPassWd.PasswordChar = ""
 
         End If
+    End Sub
 
+    Private Sub btnLogout_Click_1(sender As Object, e As EventArgs) Handles btnLogout.Click
+        Me.Hide()
+        Login.Show()
+    End Sub
 
+    Private Sub btnAddEmployee_Click(sender As Object, e As EventArgs) Handles btnAddEmployee.Click
+        Dim answer As Integer = MsgBox("Are you sure you want to add this employee", MsgBoxStyle.YesNo, " Save confirmation")
+
+        If (answer = MsgBoxResult.Yes) Then
+
+            Try
+
+                If (ValidateInput()) Then
+                    'Adding employee details
+                    EmployeeTableAdapter1.InsertEmployee(txtFName.Text, txtLName.Text, CBGender.Text, MBPhoneNo.Text, txtAddress.Text,
+                    txtEmail.Text, txtUserName.Text, txtPassWd.Text, txtOccupType.Text, CBStatus.Text)
+
+                    MsgBox("Successfully added")
+                    Clear()
+                Else
+
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+
+        End If
+    End Sub
+
+    Private Sub txtPassWd_TextChanged_1(sender As Object, e As EventArgs) Handles txtPassWd.TextChanged
+        lblConfirmPassWd.Text = "Confirm New Password"
+        lblPasswd.Text = "New Password"
+        lblConfirmPassWd.Visible = True
+        confirmPassTxt.Visible = True
+        checkmark1.Visible = True
+        checkmark2.Visible = True
+        If confirmPassTxt.Text.Equals(txtPassWd.Text) And IsPasswordSecure() Then
+            checkmark1.Image = My.Resources.download
+            checkmark2.Image = My.Resources.download
+        Else
+            checkmark1.Image = My.Resources.g30896_512
+            checkmark2.Image = My.Resources.g30896_512
+            isPasswordValid = False
+        End If
     End Sub
 
     Private Sub btnDeleteEmployee_Click(sender As Object, e As EventArgs) Handles btnDeleteEmployee.Click
-        Dim response As Integer = MsgBox("Are you sure you want to archive employee number " & txtEmpIDSearch.Text & "? Archiving will change the employee's UserName, Password, Occupation and Employment Status.", MsgBoxStyle.YesNo)
+        If CBStatus.Text = "N/A" Then
+            MsgBox("Employee has already been archived!", MsgBoxStyle.OkOnly)
+        Else
+            Dim response As Integer = MsgBox("Are you sure you want to archive employee number " & txtFName.Text & " " & txtLName.Text & "? Archiving will change the employee's UserName, Password, Occupation and Employment Status.", MsgBoxStyle.YesNo)
 
-        If response.Equals(MsgBoxResult.Yes) Then
-            EmployeeTableAdapter.ArchiveEmployee(txtEmpIDSearch.Text)
-            MsgBox("Employee successfully archived!", MsgBoxStyle.OkOnly)
-            Clear()
+            If response.Equals(MsgBoxResult.Yes) Then
+                '  EmployeeTableAdapter.ArchiveEmployee(txtEmpIDSearch.Text)
+                MsgBox("Employee successfully archived!", MsgBoxStyle.OkOnly)
+                Clear()
+            End If
         End If
     End Sub
 
-    Private Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainer1.SplitterMoved
+    Private Sub btnUpdateEmployee_Click_1(sender As Object, e As EventArgs) Handles btnUpdateEmployee.Click
+        Try
+            If Integer.TryParse((txtEmpIDSearch.Text), CInt(txtEmpIDSearch.Text)).Equals(True) And isPasswordValid Then
+                Dim response As Integer = MsgBox("Are you sure you wish to update employee details?", MsgBoxStyle.YesNo)
+                If response.Equals(MsgBoxResult.Yes) Then
+                    EmployeeTableAdapter1.UpdateEmployee(txtFName.Text, txtLName.Text, CBGender.Text, MBPhoneNo.Text, txtAddress.Text, txtEmail.Text,
+                    txtUserName.Text, txtPassWd.Text, txtOccupType.Text, CBStatus.Text, CInt(txtEmpID.Text), CInt(txtEmpIDSearch.Text))
+                    MsgBox("Updated Successfully", MsgBoxStyle.MsgBoxRight)
+                    Clear()
+                End If
+                lblConfirmPassWd.Visible = False
+                confirmPassTxt.Visible = False
+                checkmark1.Visible = False
+                checkmark2.Visible = False
+
+            Else
+                MsgBox("Unable to update employee information!", MsgBoxStyle.OkOnly)
+            End If
+
+        Catch ex As System.ArgumentException
+            MsgBox("Please enter an Employee ID", MsgBoxStyle.OkOnly)
+        Catch ex2 As System.InvalidCastException
+            MsgBox("Please enter an Employee ID", MsgBoxStyle.OkOnly)
+        End Try
 
     End Sub
+
+    Private Sub confirmPassTxt_TextChanged(sender As Object, e As EventArgs) Handles confirmPassTxt.TextChanged
+        checkmark1.Visible = True
+        checkmark2.Visible = True
+        If confirmPassTxt.Text.Equals(txtPassWd.Text) And IsPasswordSecure() Then
+            checkmark1.Image = My.Resources.download
+            checkmark2.Image = My.Resources.download
+        Else
+            checkmark1.Image = My.Resources.g30896_512
+            checkmark2.Image = My.Resources.g30896_512
+            isPasswordValid = False
+        End If
+
+    End Sub
+
+    ' requires the password to be more than 6 characters in length and contain special characters
+    Private Function IsPasswordSecure() As Boolean
+        Return txtPassWd.Text.Length > 6 And Regex.IsMatch(txtPassWd.Text, "[`~!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\\\|:;""'<>,\.\?/]")
+    End Function
 End Class

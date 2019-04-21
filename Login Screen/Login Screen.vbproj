@@ -49,10 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -92,6 +90,16 @@
     <Compile Include="group26DataSet.vb">
       <DependentUpon>group26DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="My Project\My.Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>My.Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="NewBooking.Designer.vb">
       <DependentUpon>NewBooking.vb</DependentUpon>
     </Compile>
@@ -102,6 +110,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>projectDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Resource1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="UpdateEmployee.Designer.vb">
       <DependentUpon>UpdateEmployee.vb</DependentUpon>
@@ -120,11 +133,6 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -167,6 +175,12 @@
     <Compile Include="ViewBookings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="View_Bookings.Designer.vb">
+      <DependentUpon>View_Bookings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View_Bookings.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AdditionalServicesShuttle.resx">
@@ -175,8 +189,18 @@
     <EmbeddedResource Include="CleaningService.resx">
       <DependentUpon>CleaningService.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewBooking.resx">
       <DependentUpon>NewBooking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource1.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateEmployee.resx">
       <DependentUpon>UpdateEmployee.vb</DependentUpon>
@@ -184,11 +208,11 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="My Project\Resources.resx">
+    <EmbeddedResource Include="My Project\My.Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>My.Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports.resx">
       <DependentUpon>Reports.vb</DependentUpon>
@@ -207,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewBookings.resx">
       <DependentUpon>ViewBookings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View_Bookings.resx">
+      <DependentUpon>View_Bookings.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -256,9 +283,6 @@
     <None Include="Resources\meal service.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Update.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\additional_services.png" />
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +296,105 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\graph.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\employee update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\50-Beautiful-and-Minimalist-Presentation-Backgrounds-08.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login 3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login icon 2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clean icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\218-2181683_carpet-cleaning-service-best-in-arizona-services-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bell 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\50-Beautiful-and-Minimalist-Presentation-Backgrounds-081.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-5121.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bell 21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\update room.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clean1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon 21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-5122.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\employee update1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report %282%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-5123.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22691505.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\g30896-512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

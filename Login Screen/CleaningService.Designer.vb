@@ -213,7 +213,7 @@ Partial Class CleaningService
         '
         'PictureBox2
         '
-        Me.PictureBox2.Image = Global.Login_Screen.My.Resources.Resources.calander
+        'Me.PictureBox2.Image = Global.Login_Screen.My.Resources.Resources.calander
         Me.PictureBox2.Location = New System.Drawing.Point(15, 65)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(178, 102)
@@ -223,7 +223,7 @@ Partial Class CleaningService
         '
         'pbViewBookings
         '
-        Me.pbViewBookings.Image = Global.Login_Screen.My.Resources.Resources.calander
+        ' Me.pbViewBookings.Image = Global.Login_Screen.My.Resources.Resources.calander
         Me.pbViewBookings.Location = New System.Drawing.Point(12, 65)
         Me.pbViewBookings.Name = "pbViewBookings"
         Me.pbViewBookings.Size = New System.Drawing.Size(0, 0)
@@ -233,7 +233,7 @@ Partial Class CleaningService
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.Login_Screen.My.Resources.Resources.Update
+        'Me.PictureBox1.Image = Global.Login_Screen.My.Resources.Resources.Update
         Me.PictureBox1.Location = New System.Drawing.Point(12, 437)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(178, 102)
@@ -243,7 +243,7 @@ Partial Class CleaningService
         '
         'pbCleaningService
         '
-        Me.pbCleaningService.Image = Global.Login_Screen.My.Resources.Resources.cleaning_Image
+        'Me.pbCleaningService.Image = Global.Login_Screen.My.Resources.Resources.cleaning_Image
         Me.pbCleaningService.Location = New System.Drawing.Point(12, 189)
         Me.pbCleaningService.Name = "pbCleaningService"
         Me.pbCleaningService.Size = New System.Drawing.Size(178, 102)
@@ -256,7 +256,7 @@ Partial Class CleaningService
         Me.pbMealService.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pbMealService.Image = Global.Login_Screen.My.Resources.Resources.additional_services
+        ' Me.pbMealService.Image = Global.Login_Screen.My.Resources.Resources.additional_services
         Me.pbMealService.Location = New System.Drawing.Point(12, 313)
         Me.pbMealService.Name = "pbMealService"
         Me.pbMealService.Size = New System.Drawing.Size(178, 102)

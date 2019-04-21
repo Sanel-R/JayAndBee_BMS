@@ -1,26 +1,29 @@
 ﻿Public Class Login
+    Friend username As String
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+
+        Try
+            If EmployeeTableAdapter1.GetPassword((txtUsername.Text)).Equals(txtPassword.Text) And
+                EmployeeTableAdapter1.GetOccupation((txtUsername.Text)).Equals(cbOccupation.Text) Then
+                MsgBox("Redirecting you to the Management interface", MsgBoxStyle.OkOnly)
+                Me.Hide()
+                username = EmployeeTableAdapter1.GetNames(txtUsername.Text)
+                If cbOccupation.Text.Equals("Employee") Then
+
+                ElseIf cbOccupation.Text.Equals("Manager") Then
+                    UpdateEmployee.Show()
+                End If
+            Else
+                MsgBox("Login Unauthorized!", "Error", MsgBoxStyle.OkOnly)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 
-    Private Sub cbOccupation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbOccupation.SelectedIndexChanged
+    Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
-
-    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles lblPassword.Click
-
-    End Sub
-
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles lblUserName.Click
-
-    End Sub
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles lblUserType.Click
-
-    End Sub
-
-    Private Sub MonthCalendar1_DateChanged(sender As Object, e As DateRangeEventArgs)
-    End Sub
-
 End Class
