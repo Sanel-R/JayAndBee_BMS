@@ -23,9 +23,6 @@ Partial Class NewBooking
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.GuestBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Group26DataSet = New Login_Screen.group26DataSet()
-        Me.GuestTableAdapter = New Login_Screen.group26DataSetTableAdapters.GuestTableAdapter()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.pbNotification = New System.Windows.Forms.PictureBox()
         Me.lblUser = New System.Windows.Forms.Label()
@@ -76,8 +73,12 @@ Partial Class NewBooking
         Me.btnLogout = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        CType(Me.GuestBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Group26DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Group26DataSet = New Login_Screen.group26DataSet()
+        Me.GuestBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GuestTableAdapter = New Login_Screen.group26DataSetTableAdapters.GuestTableAdapter()
+        Me.RoomTableAdapter1 = New Login_Screen.group26DataSetTableAdapters.RoomTableAdapter()
+        Me.EmployeeTableAdapter1 = New Login_Screen.group26DataSetTableAdapters.EmployeeTableAdapter()
+        Me.BookingTableAdapter1 = New Login_Screen.group26DataSetTableAdapters.BookingTableAdapter()
         Me.Panel2.SuspendLayout()
         CType(Me.pbNotification, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,21 +91,9 @@ Partial Class NewBooking
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Group26DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GuestBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'GuestBindingSource
-        '
-        Me.GuestBindingSource.DataMember = "Guest"
-        Me.GuestBindingSource.DataSource = Me.Group26DataSet
-        '
-        'Group26DataSet
-        '
-        Me.Group26DataSet.DataSetName = "group26DataSet"
-        Me.Group26DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'GuestTableAdapter
-        '
-        Me.GuestTableAdapter.ClearBeforeFill = True
         '
         'Panel2
         '
@@ -237,6 +226,7 @@ Partial Class NewBooking
         '
         'cmbBookingStatus
         '
+        Me.cmbBookingStatus.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Group26DataSet, "Booking.Booking_Status", True))
         Me.cmbBookingStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbBookingStatus.FormattingEnabled = True
         Me.cmbBookingStatus.Items.AddRange(New Object() {"In Progress", "Complete"})
@@ -259,6 +249,7 @@ Partial Class NewBooking
         'rtbBookingConf
         '
         Me.rtbBookingConf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.rtbBookingConf.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Group26DataSet, "Booking.Booking_confirmation", True))
         Me.rtbBookingConf.Location = New System.Drawing.Point(171, 48)
         Me.rtbBookingConf.Name = "rtbBookingConf"
         Me.rtbBookingConf.Size = New System.Drawing.Size(154, 82)
@@ -324,12 +315,13 @@ Partial Class NewBooking
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.Location = New System.Drawing.Point(24, 80)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(120, 15)
+        Me.Label15.Size = New System.Drawing.Size(91, 15)
         Me.Label15.TabIndex = 27
-        Me.Label15.Text = "Departure Date Date"
+        Me.Label15.Text = "Departure Date"
         '
         'cmbRoomType
         '
+        Me.cmbRoomType.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Group26DataSet, "Room.Room_type", True))
         Me.cmbRoomType.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbRoomType.FormattingEnabled = True
         Me.cmbRoomType.Items.AddRange(New Object() {"Superior Quadruple Room", "Double Room", "Family Room", "Superior Queen", "Twin Room", "Superior King"})
@@ -341,6 +333,7 @@ Partial Class NewBooking
         '
         'mskArrivalDate
         '
+        Me.mskArrivalDate.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Group26DataSet, "Booking.Arrival_date", True))
         Me.mskArrivalDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mskArrivalDate.Location = New System.Drawing.Point(172, 49)
         Me.mskArrivalDate.Mask = "00/00/0000 90:00"
@@ -361,6 +354,7 @@ Partial Class NewBooking
         '
         'mskDepartureDate
         '
+        Me.mskDepartureDate.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Group26DataSet, "Booking.Departure_date", True))
         Me.mskDepartureDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mskDepartureDate.Location = New System.Drawing.Point(171, 79)
         Me.mskDepartureDate.Mask = "00/00/0000 90:00"
@@ -451,6 +445,7 @@ Partial Class NewBooking
         'cmbTitle
         '
         Me.cmbTitle.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GuestBindingSource, "Title", True))
+        Me.cmbTitle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbTitle.FormattingEnabled = True
         Me.cmbTitle.Items.AddRange(New Object() {"Mr", "Mrs", "Ms", "Dr", "Rev"})
@@ -458,7 +453,6 @@ Partial Class NewBooking
         Me.cmbTitle.Name = "cmbTitle"
         Me.cmbTitle.Size = New System.Drawing.Size(59, 23)
         Me.cmbTitle.TabIndex = 38
-        Me.cmbTitle.Text = "Select"
         '
         'txtName
         '
@@ -576,7 +570,7 @@ Partial Class NewBooking
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(34, 525)
+        Me.Label3.Location = New System.Drawing.Point(35, 525)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(126, 16)
         Me.Label3.TabIndex = 40
@@ -586,7 +580,7 @@ Partial Class NewBooking
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox3.Image = Global.Login_Screen.My.Resources.Resources.clean
-        Me.PictureBox3.Location = New System.Drawing.Point(11, 376)
+        Me.PictureBox3.Location = New System.Drawing.Point(14, 376)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(168, 146)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -598,7 +592,7 @@ Partial Class NewBooking
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(41, 357)
+        Me.Label2.Location = New System.Drawing.Point(49, 357)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(96, 16)
         Me.Label2.TabIndex = 38
@@ -648,6 +642,32 @@ Partial Class NewBooking
         Me.Label1.TabIndex = 30
         Me.Label1.Text = "View Bookings"
         '
+        'Group26DataSet
+        '
+        Me.Group26DataSet.DataSetName = "group26DataSet"
+        Me.Group26DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'GuestBindingSource
+        '
+        Me.GuestBindingSource.DataMember = "Guest"
+        Me.GuestBindingSource.DataSource = Me.Group26DataSet
+        '
+        'GuestTableAdapter
+        '
+        Me.GuestTableAdapter.ClearBeforeFill = True
+        '
+        'RoomTableAdapter1
+        '
+        Me.RoomTableAdapter1.ClearBeforeFill = True
+        '
+        'EmployeeTableAdapter1
+        '
+        Me.EmployeeTableAdapter1.ClearBeforeFill = True
+        '
+        'BookingTableAdapter1
+        '
+        Me.BookingTableAdapter1.ClearBeforeFill = True
+        '
         'NewBooking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -658,8 +678,6 @@ Partial Class NewBooking
         Me.Name = "NewBooking"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "NewBooking"
-        CType(Me.GuestBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Group26DataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.pbNotification, System.ComponentModel.ISupportInitialize).EndInit()
@@ -678,6 +696,8 @@ Partial Class NewBooking
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Group26DataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GuestBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -735,4 +755,7 @@ Partial Class NewBooking
     Friend WithEvents Group26DataSet As group26DataSet
     Friend WithEvents GuestBindingSource As BindingSource
     Friend WithEvents GuestTableAdapter As group26DataSetTableAdapters.GuestTableAdapter
+    Friend WithEvents RoomTableAdapter1 As group26DataSetTableAdapters.RoomTableAdapter
+    Friend WithEvents EmployeeTableAdapter1 As group26DataSetTableAdapters.EmployeeTableAdapter
+    Friend WithEvents BookingTableAdapter1 As group26DataSetTableAdapters.BookingTableAdapter
 End Class

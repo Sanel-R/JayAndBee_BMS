@@ -48,7 +48,6 @@ Partial Class UpdateEmployee
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.txtLName = New System.Windows.Forms.TextBox()
         Me.txtFName = New System.Windows.Forms.TextBox()
-        Me.txtOccupType = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtEmpID = New System.Windows.Forms.TextBox()
@@ -73,6 +72,14 @@ Partial Class UpdateEmployee
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.txtOccupType = New System.Windows.Forms.ComboBox()
         CType(Me.Group26DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,10 +125,10 @@ Partial Class UpdateEmployee
         '
         Me.lblUser.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblUser.BackColor = System.Drawing.Color.Transparent
-        Me.lblUser.Location = New System.Drawing.Point(707, 28)
+        Me.lblUser.Location = New System.Drawing.Point(596, 28)
         Me.lblUser.Name = "lblUser"
-        Me.lblUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.lblUser.Size = New System.Drawing.Size(60, 23)
+        Me.lblUser.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.lblUser.Size = New System.Drawing.Size(171, 23)
         Me.lblUser.TabIndex = 39
         Me.lblUser.Text = "Label17"
         Me.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -152,6 +159,14 @@ Partial Class UpdateEmployee
         'lblCheckMark1
         '
         Me.lblCheckMark1.BackColor = System.Drawing.Color.White
+        Me.lblCheckMark1.Controls.Add(Me.txtOccupType)
+        Me.lblCheckMark1.Controls.Add(Me.Label25)
+        Me.lblCheckMark1.Controls.Add(Me.Label24)
+        Me.lblCheckMark1.Controls.Add(Me.Label22)
+        Me.lblCheckMark1.Controls.Add(Me.Label21)
+        Me.lblCheckMark1.Controls.Add(Me.Label20)
+        Me.lblCheckMark1.Controls.Add(Me.Label18)
+        Me.lblCheckMark1.Controls.Add(Me.Label17)
         Me.lblCheckMark1.Controls.Add(Me.checkmark2)
         Me.lblCheckMark1.Controls.Add(Me.checkmark1)
         Me.lblCheckMark1.Controls.Add(Me.CBStatus)
@@ -170,7 +185,6 @@ Partial Class UpdateEmployee
         Me.lblCheckMark1.Controls.Add(Me.txtEmail)
         Me.lblCheckMark1.Controls.Add(Me.txtLName)
         Me.lblCheckMark1.Controls.Add(Me.txtFName)
-        Me.lblCheckMark1.Controls.Add(Me.txtOccupType)
         Me.lblCheckMark1.Controls.Add(Me.Label13)
         Me.lblCheckMark1.Controls.Add(Me.Label12)
         Me.lblCheckMark1.Controls.Add(Me.txtEmpID)
@@ -221,7 +235,7 @@ Partial Class UpdateEmployee
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(19, 167)
+        Me.Label4.Location = New System.Drawing.Point(19, 170)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(97, 13)
         Me.Label4.TabIndex = 51
@@ -284,7 +298,7 @@ Partial Class UpdateEmployee
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(19, 138)
+        Me.Label15.Location = New System.Drawing.Point(21, 141)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(42, 13)
         Me.Label15.TabIndex = 47
@@ -351,18 +365,10 @@ Partial Class UpdateEmployee
         Me.txtFName.Size = New System.Drawing.Size(160, 20)
         Me.txtFName.TabIndex = 34
         '
-        'txtOccupType
-        '
-        Me.txtOccupType.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Group26DataSet1, "Employee.Occupation_type", True))
-        Me.txtOccupType.Location = New System.Drawing.Point(196, 44)
-        Me.txtOccupType.Name = "txtOccupType"
-        Me.txtOccupType.Size = New System.Drawing.Size(160, 20)
-        Me.txtOccupType.TabIndex = 33
-        '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(19, 225)
+        Me.Label13.Location = New System.Drawing.Point(21, 228)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(32, 13)
         Me.Label13.TabIndex = 36
@@ -371,7 +377,7 @@ Partial Class UpdateEmployee
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(19, 44)
+        Me.Label12.Location = New System.Drawing.Point(20, 47)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(89, 13)
         Me.Label12.TabIndex = 35
@@ -409,7 +415,7 @@ Partial Class UpdateEmployee
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(19, 196)
+        Me.Label9.Location = New System.Drawing.Point(19, 199)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(78, 13)
         Me.Label9.TabIndex = 29
@@ -427,7 +433,7 @@ Partial Class UpdateEmployee
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(19, 73)
+        Me.Label7.Location = New System.Drawing.Point(19, 76)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(35, 13)
         Me.Label7.TabIndex = 27
@@ -604,6 +610,102 @@ Partial Class UpdateEmployee
         Me.Label1.TabIndex = 30
         Me.Label1.Text = "View Bookings"
         '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.BackColor = System.Drawing.Color.White
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.Red
+        Me.Label17.Location = New System.Drawing.Point(10, 78)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(13, 16)
+        Me.Label17.TabIndex = 56
+        Me.Label17.Text = "*"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.BackColor = System.Drawing.Color.White
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.Red
+        Me.Label18.Location = New System.Drawing.Point(10, 108)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(13, 16)
+        Me.Label18.TabIndex = 57
+        Me.Label18.Text = "*"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.BackColor = System.Drawing.Color.White
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.Red
+        Me.Label20.Location = New System.Drawing.Point(10, 200)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(13, 16)
+        Me.Label20.TabIndex = 59
+        Me.Label20.Text = "*"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.BackColor = System.Drawing.Color.White
+        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.ForeColor = System.Drawing.Color.Red
+        Me.Label21.Location = New System.Drawing.Point(10, 258)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(13, 16)
+        Me.Label21.TabIndex = 60
+        Me.Label21.Text = "*"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.BackColor = System.Drawing.Color.White
+        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ForeColor = System.Drawing.Color.Red
+        Me.Label22.Location = New System.Drawing.Point(10, 291)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(13, 16)
+        Me.Label22.TabIndex = 61
+        Me.Label22.Text = "*"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.BackColor = System.Drawing.Color.White
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.ForeColor = System.Drawing.Color.Red
+        Me.Label24.Location = New System.Drawing.Point(10, 48)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(13, 16)
+        Me.Label24.TabIndex = 63
+        Me.Label24.Text = "*"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.BackColor = System.Drawing.Color.White
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.Red
+        Me.Label25.Location = New System.Drawing.Point(10, 172)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(13, 16)
+        Me.Label25.TabIndex = 64
+        Me.Label25.Text = "*"
+        '
+        'txtOccupType
+        '
+        Me.txtOccupType.BackColor = System.Drawing.Color.White
+        Me.txtOccupType.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Group26DataSet1, "Employee.Occupation_type", True))
+        Me.txtOccupType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.txtOccupType.FormattingEnabled = True
+        Me.txtOccupType.Items.AddRange(New Object() {"Employee", "Manager"})
+        Me.txtOccupType.Location = New System.Drawing.Point(196, 44)
+        Me.txtOccupType.Name = "txtOccupType"
+        Me.txtOccupType.Size = New System.Drawing.Size(121, 21)
+        Me.txtOccupType.TabIndex = 65
+        '
         'UpdateEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -665,7 +767,6 @@ Partial Class UpdateEmployee
     Friend WithEvents txtEmail As TextBox
     Friend WithEvents txtLName As TextBox
     Friend WithEvents txtFName As TextBox
-    Friend WithEvents txtOccupType As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents txtEmpID As TextBox
@@ -686,4 +787,12 @@ Partial Class UpdateEmployee
     Friend WithEvents EmployeeTableAdapter1 As group26DataSetTableAdapters.EmployeeTableAdapter
     Friend WithEvents checkmark2 As PictureBox
     Friend WithEvents checkmark1 As PictureBox
+    Friend WithEvents Label25 As Label
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents txtOccupType As ComboBox
 End Class

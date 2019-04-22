@@ -1,7 +1,7 @@
 ﻿Imports System.Text.RegularExpressions
 
 Public Class UpdateEmployee
-    Private isPasswordValid As Boolean = True
+    Private isPasswordValid As Boolean = False
 
     Private Sub ShowAll(ByVal toggle As Boolean)
         lblCheckMark1.Visible = toggle
@@ -20,8 +20,14 @@ Public Class UpdateEmployee
     End Sub
 
     Private Function ValidateInput() As Boolean
+        Return Not IsNumeric(txtFName.Text) And
+            Not IsNumeric(txtLName.Text) And Not IsNumeric(txtUserName.Text) And Not IsNumeric(txtPassWd.Text) And
+            Not IsNumeric(txtOccupType.Text) And Not IsNumeric(CBStatus.Text)
+    End Function
 
-        Return True
+    Private Function ValidateFields() As Boolean
+        Return txtFName.Text.Count > 0 And txtLName.Text.Count > 0 And txtOccupType.Text.Count > 0 And txtUserName.Text.Count > 0 And
+            txtPassWd.Text.Count > 0 And MBPhoneNo.Text.Count > 0 And CBStatus.Text.Count > 0
     End Function
 
     Private Sub btnUpdateEmployee_Click(sender As Object, e As EventArgs)
@@ -31,8 +37,6 @@ Public Class UpdateEmployee
 
     End Sub
 
-
-
     Private Sub Clear()
         txtEmpID.Clear()
         txtEmpIDSearch.Clear()
@@ -40,7 +44,7 @@ Public Class UpdateEmployee
         txtLName.Clear()
         MBPhoneNo.Clear()
         txtEmail.Clear()
-        txtOccupType.Clear()
+        txtOccupType.Text = "Select"
         txtPassWd.Clear()
         confirmPassTxt.Clear()
         txtUserName.Clear()
@@ -82,6 +86,7 @@ Public Class UpdateEmployee
     Private Sub btnSearch_Click_1(sender As Object, e As EventArgs) Handles btnSearch.Click
 
         Try
+            ' Checks database if the employee number exists, proceeds to fill the dataset if returns true
             If (EmployeeTableAdapter1.FInd(CInt(txtEmpIDSearch.Text)).Equals(CInt(txtEmpIDSearch.Text))) Then
                 Me.EmployeeTableAdapter1.FillBy(Me.Group26DataSet1.Employee, CInt(txtEmpIDSearch.Text))
                 If Not CBAction.Text.Equals("Add New Employee") Then
@@ -94,7 +99,7 @@ Public Class UpdateEmployee
                 End If
             End If
         Catch null As System.NullReferenceException
-            MsgBox("No employee with ID Number " & txtEmpIDSearch.Text & " was found!", MsgBoxStyle.OkOnly)
+            MsgBox("No employee with ID Number " & txtEmpIDSearch.Text & " was found", MsgBoxStyle.OkOnly)
         Catch noImput As System.InvalidCastException
             MsgBox("Please enter an Employee Number", MsgBoxStyle.OkOnly)
         End Try
@@ -159,30 +164,33 @@ Public Class UpdateEmployee
     Private Sub btnLogout_Click_1(sender As Object, e As EventArgs) Handles btnLogout.Click
         Me.Hide()
         Login.Show()
+        Clear()
+
     End Sub
 
     Private Sub btnAddEmployee_Click(sender As Object, e As EventArgs) Handles btnAddEmployee.Click
-        Dim answer As Integer = MsgBox("Are you sure you want to add this employee", MsgBoxStyle.YesNo, " Save confirmation")
+        Try
+            MsgBox(isPasswordValid & " " & ValidateInput())
+            If isPasswordValid And ValidateInput() And ValidateFields() Then
+                Dim answer As Integer = MsgBox("Are you sure you want to add this employee", MsgBoxStyle.YesNo, " Save confirmation")
 
-        If (answer = MsgBoxResult.Yes) Then
-
-            Try
-
-                If (ValidateInput()) Then
+                If (answer = MsgBoxResult.Yes) Then
                     'Adding employee details
                     EmployeeTableAdapter1.InsertEmployee(txtFName.Text, txtLName.Text, CBGender.Text, MBPhoneNo.Text, txtAddress.Text,
-                    txtEmail.Text, txtUserName.Text, txtPassWd.Text, txtOccupType.Text, CBStatus.Text)
-
-                    MsgBox("Successfully added")
+                                txtEmail.Text, txtUserName.Text, txtPassWd.Text, txtOccupType.Text, CBStatus.Text)
+                    MsgBox("Employee has been added successfully", MsgBoxStyle.OkOnly)
                     Clear()
-                Else
-
                 End If
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-
-        End If
+            ElseIf Not ValidateFields() Then
+                MsgBox("Missing fields. Please enter all the field marked with *", "Missing fields", MsgBoxStyle.OkOnly)
+            ElseIf Not ValidateInput() Then
+                MsgBox("Please make sure that the information entered is of the right type (i.e. name is not a number)", MsgBoxStyle.OkOnly)
+            End If
+        Catch ex As System.ArgumentException
+            MsgBox("Please enter all the field marked with *")
+        Catch cast As System.InvalidCastException
+            MsgBox("Please enter all the field marked with *")
+        End Try
     End Sub
 
     Private Sub txtPassWd_TextChanged_1(sender As Object, e As EventArgs) Handles txtPassWd.TextChanged
@@ -195,6 +203,7 @@ Public Class UpdateEmployee
         If confirmPassTxt.Text.Equals(txtPassWd.Text) And IsPasswordSecure() Then
             checkmark1.Image = My.Resources.download
             checkmark2.Image = My.Resources.download
+            isPasswordValid = True
         Else
             checkmark1.Image = My.Resources.g30896_512
             checkmark2.Image = My.Resources.g30896_512
@@ -203,17 +212,25 @@ Public Class UpdateEmployee
     End Sub
 
     Private Sub btnDeleteEmployee_Click(sender As Object, e As EventArgs) Handles btnDeleteEmployee.Click
-        If CBStatus.Text = "N/A" Then
-            MsgBox("Employee has already been archived!", MsgBoxStyle.OkOnly)
-        Else
-            Dim response As Integer = MsgBox("Are you sure you want to archive employee number " & txtFName.Text & " " & txtLName.Text & "? Archiving will change the employee's UserName, Password, Occupation and Employment Status.", MsgBoxStyle.YesNo)
+        Try
+            If Integer.TryParse((txtEmpIDSearch.Text), CInt(txtEmpIDSearch.Text)).Equals(True) And isPasswordValid Then
+                If CBStatus.Text = "N/A" Then
+                    MsgBox("Employee has already been archived!", MsgBoxStyle.OkOnly)
+                Else
+                    Dim response As Integer = MsgBox("Are you sure you want to archive employee number " & txtFName.Text & " " & txtLName.Text & "? Archiving will change the employee's UserName, Password, Occupation and Employment Status.", MsgBoxStyle.YesNo)
 
-            If response.Equals(MsgBoxResult.Yes) Then
-                '  EmployeeTableAdapter.ArchiveEmployee(txtEmpIDSearch.Text)
-                MsgBox("Employee successfully archived!", MsgBoxStyle.OkOnly)
-                Clear()
+                    If response.Equals(MsgBoxResult.Yes) Then
+                        '  EmployeeTableAdapter.ArchiveEmployee(txtEmpIDSearch.Text)
+                        MsgBox("Employee successfully archived!", MsgBoxStyle.OkOnly)
+                        Clear()
+                    End If
+                End If
             End If
-        End If
+        Catch ex As System.ArgumentException
+            MsgBox("Please enter an Employee ID", MsgBoxStyle.OkOnly)
+        Catch ex2 As System.InvalidCastException
+            MsgBox("Please enter an Employee ID", MsgBoxStyle.OkOnly)
+        End Try
     End Sub
 
     Private Sub btnUpdateEmployee_Click_1(sender As Object, e As EventArgs) Handles btnUpdateEmployee.Click
@@ -249,6 +266,7 @@ Public Class UpdateEmployee
         If confirmPassTxt.Text.Equals(txtPassWd.Text) And IsPasswordSecure() Then
             checkmark1.Image = My.Resources.download
             checkmark2.Image = My.Resources.download
+            isPasswordValid = True
         Else
             checkmark1.Image = My.Resources.g30896_512
             checkmark2.Image = My.Resources.g30896_512
